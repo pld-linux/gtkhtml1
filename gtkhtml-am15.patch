@@ -1,0 +1,205 @@
+diff -Nru gtkhtml-0.12.0/capplet/Makefile.am gtkhtml-0.12.0.new/capplet/Makefile.am
+--- gtkhtml-0.12.0/capplet/Makefile.am	Fri Jul 27 23:36:16 2001
++++ gtkhtml-0.12.0.new/capplet/Makefile.am	Sat Sep  8 11:55:07 2001
+@@ -10,21 +10,21 @@
+ 	-DGNOMELOCALEDIR=\"$(datadir)/locale\"	\
+ 	-DGLADE_DATADIR=\"$(gladedir)\"
+ 
+-CFLAGS +=  $(GCONF_CFLAGS)
+-
+ bin_PROGRAMS = gtkhtml-properties-capplet
+ gtkhtml_properties_capplet_SOURCES = 		\
+ 	gnome-bindings-prop.h 			\
+ 	gnome-bindings-prop.c			\
+ 	main.c
+ 
+-LDADD = \
++gtkhtml_properties_capplet_LDADD = \
+ 	$(GNOME_LIBDIR) 		\
+ 	$(EXTRA_GNOME_LIBS)		\
+ 	$(GNOME_CAPPLET_LIBS) 		\
+ 	$(GCONF_LIBS) 			\
+ 	$(top_builddir)/src/libgtkhtml.la
+ 
++gtkhtml_properties_capplet_CFLAGS = \
++	$(GCONF_CFLAGS)
+ 
+ sysdir = $(datadir)/control-center/Documents/
+ sys_DATA = gtkhtml-properties.desktop
+diff -Nru gtkhtml-0.12.0/components/ebrowser/Makefile.am gtkhtml-0.12.0.new/components/ebrowser/Makefile.am
+--- gtkhtml-0.12.0/components/ebrowser/Makefile.am	Sun Mar 18 20:38:22 2001
++++ gtkhtml-0.12.0.new/components/ebrowser/Makefile.am	Sat Sep  8 11:57:03 2001
+@@ -6,8 +6,6 @@
+ 	$(GNOME_INCLUDEDIR)	\
+ 	-I$(top_srcdir)/components
+ 
+-CFLAGS += $(EXTRA_GNOME_CFLAGS) $(GCONF_CFLAGS)
+-
+ EBROWSER_ENGINE_FILES = 		\
+ 	ebrowser-history.c		\
+ 	ebrowser-widget.c 		\
+@@ -31,25 +29,35 @@
+ 	ebrowser-stream.c ebrowser-stream.h \
+ 	ebrowser.c ebrowser.h ebrowser-ui.c ebrowser-ui.h
+ 
++ebrowser_CFLAGS = $(EXTRA_GNOME_CFLAGS) $(GCONF_CFLAGS)
++
+ LDADD = \
+ 	$(top_builddir)/src/libgtkhtml.la \
+ 	$(EXTRA_GNOME_LIBS) \
+ 	$(GHTTP_LIBS)
+ 
+-
+ noinst_PROGRAMS = test test-ebrowser test-history
+ 
+ test_SOURCES = \
+ 	$(EBROWSER_ENGINE_FILES) \
+ 	test.c test.h
+ 
++test_CFLAGS = \
++	$(EXTRA_GNOME_CFLAGS) $(GCONF_CFLAGS)
++
+ test_ebrowser_SOURCES = \
+ 	$(EBROWSER_ENGINE_FILES) \
+ 	test-ebrowser.c test-ebrowser.h
+ 
++test_ebrowser_CFLAGS = \
++	$(EXTRA_GNOME_CFLAGS) $(GCONF_CFLAGS)
++
+ test_history_SOURCES = \
+ 	test-history.c ebrowser-history.c
+ 
++test_history_CFLAGS = \
++	$(EXTRA_GNOME_CFLAGS) $(GCONF_CFLAGS)
++
+ oafdir = $(datadir)/oaf
+ 
+ oaf_in_files = GNOME_GtkHTML_EBrowser.oaf.in
+diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/components/html-editor/Makefile.am
+--- gtkhtml-0.12.0/components/html-editor/Makefile.am	Mon Aug 13 17:52:41 2001
++++ gtkhtml-0.12.0.new/components/html-editor/Makefile.am	Sat Sep  8 12:04:53 2001
+@@ -14,7 +14,7 @@
+ 	$(GTK_CFLAGS)					\
+ 	-DGLADE_DATADIR=\"$(gladedir)\"
+ 
+-CFLAGS +=  $(GCONF_CFLAGS) $(PSPELL_CFLAGS) -DICONDIR=\"$(datadir)/gtkhtml/icons\"
++CFLAGS =  $(GCONF_CFLAGS) $(PSPELL_CFLAGS) -DICONDIR=\"$(datadir)/gtkhtml/icons\"
+ 
+ # CORBA stuff
+ 
+@@ -47,8 +47,6 @@
+ 	$(ORBIT_IDL) -I$(datadir)/idl `$(GNOME_CONFIG) --cflags idl`	\
+ 		-I$(srcdir) $(srcdir)/Spell.idl
+ 
+-LDFLAGS += -dynamic
+-
+ LDADD =	\
+ 	$(top_builddir)/src/libgtkhtml.la	\
+ 	$(EXTRA_GNOME_LIBS)			\
+@@ -117,11 +115,23 @@
+ 
+ libgnome_gtkhtml_editor_la_SOURCES =		\
+ 	$(GTKHTML_EDITOR_SOURCES_COMMON)
++
++libgnome_gtkhtml_editor_la_CFLAGS = \
++	$(GCONF_CFLAGS) $(PSPELL_CFLAGS) 	\
++	-DICONDIR=\"$(datadir)/gtkhtml/icons\"
++
++libgnome_gtkhtml_editor_la_LDFLAGS = -dynamic
++
+ PRGS =
+ else
+ PRGS = gnome-gtkhtml-editor
++
+ gnome_gtkhtml_editor_SOURCES =			\
+ 	$(GTKHTML_EDITOR_SOURCES_COMMON)
++
++gnome_gtkhtml_editor_CFLAGS = \
++	$(GCONF_CFLAGS) $(PSPELL_CFLAGS) 	\
++	-DICONDIR=\"$(datadir)/gtkhtml/icons\"
+ endif
+ 
+ bin_PROGRAMS = $(PRGS)
+@@ -153,6 +163,10 @@
+ 	resolver.h				\
+ 	test-html-editor-control.c
+ 
++test_editor_CFLAGS = \
++	$(GCONF_CFLAGS) $(PSPELL_CFLAGS) 	\
++	-DICONDIR=\"$(datadir)/gtkhtml/icons\"
++
+ # Extra stuff to distribute.
+ 
+ EXTRA_DIST =					\
+@@ -169,7 +183,7 @@
+ idldir = $(datadir)/gtkhtml
+ idl_DATA = $(IDLS)
+ 
+-CLEANFILES += $(IDL_GENERATED) $(SPELL_IDL_GENERATED)
++CLEANFILES = $(IDL_GENERATED) $(SPELL_IDL_GENERATED)
+ BUILT_SOURCE = $(IDL_GENERATED) $(SPELL_IDL_GENERATED)
+ 
+ dist-hook:
+diff -Nru gtkhtml-0.12.0/configure.in gtkhtml-0.12.0.new/configure.in
+--- gtkhtml-0.12.0/configure.in	Wed Aug 22 00:44:55 2001
++++ gtkhtml-0.12.0.new/configure.in	Sat Sep  8 11:54:01 2001
+@@ -20,10 +20,6 @@
+ 
+ GNOME_COMPILE_WARNINGS
+ 
+-AC_SUBST(CFLAGS)
+-AC_SUBST(CPPFLAGS)
+-AC_SUBST(LDFLAGS)
+-
+ ALL_LINGUAS="az cs da de el es fi fr gl hu it ja ko lt nl nn no pl pt_BR ru sk sl sv tr uk zh_TW.Big5"
+ AM_GNOME_GETTEXT
+ 
+diff -Nru gtkhtml-0.12.0/doc/Makefile.am gtkhtml-0.12.0.new/doc/Makefile.am
+--- gtkhtml-0.12.0/doc/Makefile.am	Thu Jan 25 16:13:28 2001
++++ gtkhtml-0.12.0.new/doc/Makefile.am	Sat Sep  8 11:54:19 2001
+@@ -9,9 +9,6 @@
+ # The directory containing the source code (if it contains documentation).
+ DOC_SOURCE_DIR=$(top_srcdir)/src
+ 
+-CFLAGS += $(EXTRA_GNOME_CFLAGS)
+-LDFLAGS += $(EXTRA_GNOME_LIBS)
+-
+ HTML_DIR=$(datadir)/gnome/html
+ 
+ TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)
+diff -Nru gtkhtml-0.12.0/src/Makefile.am gtkhtml-0.12.0.new/src/Makefile.am
+--- gtkhtml-0.12.0/src/Makefile.am	Thu Jun  7 20:21:45 2001
++++ gtkhtml-0.12.0.new/src/Makefile.am	Sat Sep  8 12:08:39 2001
+@@ -7,7 +7,6 @@
+ 	-DSRCDIR=\"$(srcdir)\" \
+ 	-DPREFIX=\"$(prefix)\"
+ 
+-CFLAGS +=  $(GCONF_CFLAGS)
+ 
+ lib_LTLIBRARIES = libgtkhtml.la
+ 
+@@ -199,6 +198,7 @@
+ libgtkhtml_la_LDFLAGS = -version-info $(GTKHTML_CURRENT):$(GTKHTML_REVISION):$(GTKHTML_AGE)
+ 
+ libgtkhtml_la_LIBADD = $(EXTRA_GNOME_LIBS) $(GCONF_LIBS)
++libgtkhtml_la_CFLAGS = $(GCONF_CFLAGS)
+ 
+ # The test program.
+ 
+@@ -208,7 +208,6 @@
+ 	htmlurl.c
+ 
+ testgtkhtml_CFLAGS = $(GLIBWWW_CFLAGS)
+-testgtkhtml_LDFLAGS += -static
+ testgtkhtml_LDADD =				\
+ 	libgtkhtml.la				\
+ 	$(GNOMEUI_LIBS)				\
+@@ -221,8 +220,6 @@
+ 
+ gtest_SOURCES = \
+ 	test.c
+-testgtkhtml_CFLAGS = 
+-gtest_LDFLAGS += -static
+ gtest_LDADD =				\
+ 	libgtkhtml.la				\
+ 	$(GNOMEUI_LIBS)				\

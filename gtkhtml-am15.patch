@@ -1,6 +1,6 @@
-diff -Nru gtkhtml-0.12.0/capplet/Makefile.am gtkhtml-0.12.0.new/capplet/Makefile.am
---- gtkhtml-0.12.0/capplet/Makefile.am	Fri Jul 27 23:36:16 2001
-+++ gtkhtml-0.12.0.new/capplet/Makefile.am	Sat Sep  8 11:55:07 2001
+diff -ur gtkhtml-1.0.2.orig/capplet/Makefile.am gtkhtml-1.0.2/capplet/Makefile.am
+--- gtkhtml-1.0.2.orig/capplet/Makefile.am	Sat May 18 08:01:08 2002
++++ gtkhtml-1.0.2/capplet/Makefile.am	Sat May 18 08:01:59 2002
 @@ -10,21 +10,21 @@
  	-DGNOMELOCALEDIR=\"$(datadir)/locale\"	\
  	-DGLADE_DATADIR=\"$(gladedir)\"
@@ -26,9 +26,9 @@ diff -Nru gtkhtml-0.12.0/capplet/Makefile.am gtkhtml-0.12.0.new/capplet/Makefile
  
  sysdir = $(datadir)/control-center/Documents/
  sys_DATA = gtkhtml-properties.desktop
-diff -Nru gtkhtml-0.12.0/components/ebrowser/Makefile.am gtkhtml-0.12.0.new/components/ebrowser/Makefile.am
---- gtkhtml-0.12.0/components/ebrowser/Makefile.am	Sun Mar 18 20:38:22 2001
-+++ gtkhtml-0.12.0.new/components/ebrowser/Makefile.am	Sat Sep  8 11:57:03 2001
+diff -ur gtkhtml-1.0.2.orig/components/ebrowser/Makefile.am gtkhtml-1.0.2/components/ebrowser/Makefile.am
+--- gtkhtml-1.0.2.orig/components/ebrowser/Makefile.am	Sun Mar 18 21:38:22 2001
++++ gtkhtml-1.0.2/components/ebrowser/Makefile.am	Sat May 18 08:01:59 2002
 @@ -6,8 +6,6 @@
  	$(GNOME_INCLUDEDIR)	\
  	-I$(top_srcdir)/components
@@ -75,9 +75,9 @@ diff -Nru gtkhtml-0.12.0/components/ebrowser/Makefile.am gtkhtml-0.12.0.new/comp
  oafdir = $(datadir)/oaf
  
  oaf_in_files = GNOME_GtkHTML_EBrowser.oaf.in
-diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/components/html-editor/Makefile.am
---- gtkhtml-0.12.0/components/html-editor/Makefile.am	Mon Aug 13 17:52:41 2001
-+++ gtkhtml-0.12.0.new/components/html-editor/Makefile.am	Sat Sep  8 12:04:53 2001
+diff -ur gtkhtml-1.0.2.orig/components/html-editor/Makefile.am gtkhtml-1.0.2/components/html-editor/Makefile.am
+--- gtkhtml-1.0.2.orig/components/html-editor/Makefile.am	Mon Mar 18 17:56:07 2002
++++ gtkhtml-1.0.2/components/html-editor/Makefile.am	Sat May 18 08:01:59 2002
 @@ -14,7 +14,7 @@
  	$(GTK_CFLAGS)					\
  	-DGLADE_DATADIR=\"$(gladedir)\"
@@ -96,7 +96,7 @@ diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/c
  LDADD =	\
  	$(top_builddir)/src/libgtkhtml.la	\
  	$(EXTRA_GNOME_LIBS)			\
-@@ -117,11 +115,23 @@
+@@ -119,11 +117,23 @@
  
  libgnome_gtkhtml_editor_la_SOURCES =		\
  	$(GTKHTML_EDITOR_SOURCES_COMMON)
@@ -120,7 +120,7 @@ diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/c
  endif
  
  bin_PROGRAMS = $(PRGS)
-@@ -153,6 +163,10 @@
+@@ -155,6 +165,10 @@
  	resolver.h				\
  	test-html-editor-control.c
  
@@ -131,7 +131,7 @@ diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/c
  # Extra stuff to distribute.
  
  EXTRA_DIST =					\
-@@ -169,7 +183,7 @@
+@@ -171,7 +185,7 @@
  idldir = $(datadir)/gtkhtml
  idl_DATA = $(IDLS)
  
@@ -140,8 +140,10 @@ diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/c
  BUILT_SOURCE = $(IDL_GENERATED) $(SPELL_IDL_GENERATED)
  
  dist-hook:
---- gtkhtml-0.16.1/configure.in.orig	Wed Nov 14 23:46:16 2001
-+++ gtkhtml-0.16.1/configure.in	Wed Nov 21 08:27:13 2001
+Only in gtkhtml-1.0.2/components/html-editor: Makefile.am.orig
+diff -ur gtkhtml-1.0.2.orig/configure.in gtkhtml-1.0.2/configure.in
+--- gtkhtml-1.0.2.orig/configure.in	Mon Mar 18 20:57:45 2002
++++ gtkhtml-1.0.2/configure.in	Sat May 18 08:01:59 2002
 @@ -19,10 +19,6 @@
  
  GNOME_COMPILE_WARNINGS
@@ -153,9 +155,9 @@ diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/c
  ALL_LINGUAS="az cs da de el es eu fi fr gl hu it ja ko lt lv nl nn no pl pt pt_BR ru sk sl sv tr uk zh_CN zh_TW"
  AM_GNOME_GETTEXT
  
-diff -Nru gtkhtml-0.12.0/doc/Makefile.am gtkhtml-0.12.0.new/doc/Makefile.am
---- gtkhtml-0.12.0/doc/Makefile.am	Thu Jan 25 16:13:28 2001
-+++ gtkhtml-0.12.0.new/doc/Makefile.am	Sat Sep  8 11:54:19 2001
+diff -ur gtkhtml-1.0.2.orig/doc/Makefile.am gtkhtml-1.0.2/doc/Makefile.am
+--- gtkhtml-1.0.2.orig/doc/Makefile.am	Thu Jan 25 17:13:28 2001
++++ gtkhtml-1.0.2/doc/Makefile.am	Sat May 18 08:01:59 2002
 @@ -9,9 +9,6 @@
  # The directory containing the source code (if it contains documentation).
  DOC_SOURCE_DIR=$(top_srcdir)/src
@@ -166,9 +168,9 @@ diff -Nru gtkhtml-0.12.0/doc/Makefile.am gtkhtml-0.12.0.new/doc/Makefile.am
  HTML_DIR=$(datadir)/gnome/html
  
  TARGET_DIR=$(HTML_DIR)/$(DOC_MODULE)
-diff -Nru gtkhtml-0.12.0/src/Makefile.am gtkhtml-0.12.0.new/src/Makefile.am
---- gtkhtml-0.12.0/src/Makefile.am	Thu Jun  7 20:21:45 2001
-+++ gtkhtml-0.12.0.new/src/Makefile.am	Sat Sep  8 12:08:39 2001
+diff -ur gtkhtml-1.0.2.orig/src/Makefile.am gtkhtml-1.0.2/src/Makefile.am
+--- gtkhtml-1.0.2.orig/src/Makefile.am	Mon Mar 18 17:56:20 2002
++++ gtkhtml-1.0.2/src/Makefile.am	Sat May 18 08:06:43 2002
 @@ -7,7 +7,6 @@
  	-DSRCDIR=\"$(srcdir)\" \
  	-DPREFIX=\"$(prefix)\"
@@ -177,7 +179,13 @@ diff -Nru gtkhtml-0.12.0/src/Makefile.am gtkhtml-0.12.0.new/src/Makefile.am
  
  lib_LTLIBRARIES = libgtkhtml.la
  
-@@ -199,6 +198,7 @@
+@@ -194,11 +193,12 @@
+ #	htmlhspace.c				\
+ #	htmlelement.c				\
+ #	html-component.c			\
+-#	htmlengine-edit-table.c			\
++#	htmlengine-edit-table.c			
+ 
  libgtkhtml_la_LDFLAGS = -version-info $(GTKHTML_CURRENT):$(GTKHTML_REVISION):$(GTKHTML_AGE)
  
  libgtkhtml_la_LIBADD = $(EXTRA_GNOME_LIBS) $(GCONF_LIBS)
@@ -185,7 +193,7 @@ diff -Nru gtkhtml-0.12.0/src/Makefile.am gtkhtml-0.12.0.new/src/Makefile.am
  
  # The test program.
  
-@@ -221,7 +220,6 @@
+@@ -220,7 +220,6 @@
  
  gtest_SOURCES = \
  	test.c

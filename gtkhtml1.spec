@@ -1,28 +1,26 @@
-%define		mver		1.1
-
 Summary:	Gtkhtml library
 Summary(pl):	Biblioteka gtkhtml
 Summary(pt_BR):	Biblioteca gtkhtml
 Summary(ru):	GtkHTML - это библиотека рендеринга/редактирования HTML
 Summary(uk):	GtkHTML - це б╕бл╕отека рендерингу/редагування HTML
 Summary(zh_CN): gtkhtml ©Б
-Name:		gtkhtml
+Name:		gtkhtml1
+%define	mver	1.1
 Version:	%{mver}.10
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/gtkhtml/1.1/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gtkhtml/1.1/gtkhtml-%{version}.tar.bz2
+# Source0-md5:	8647407560e4b61ba4a12653b9cc8869
 Patch0:		%{name}-am15.patch
 Patch1:		%{name}-pixmap.patch
-Patch2:		%{name}-%{name}-stream.h.patch
-Patch3:		%{name}-get_default_fonts.patch
-BuildRequires:	GConf-devel
-BuildRequires:	ORBit-devel
+Patch2:		%{name}-get_default_fonts.patch
+BuildRequires:	GConf-devel >= 1.0.7
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bonobo-devel >= 0.9
-BuildRequires:	control-center-devel
-BuildRequires:	gal-devel >= 0.22
+BuildRequires:	bonobo-devel >= 0.32
+BuildRequires:	control-center1-devel >= 1.0.0
+BuildRequires:	gal1-devel >= 0.21
 BuildRequires:	gdk-pixbuf-gnome-devel >= 0.8.0
 BuildRequires:	gnome-libs-devel
 BuildRequires:	gnome-print-devel >= 0.29
@@ -31,8 +29,9 @@ BuildRequires:	intltool
 BuildRequires:	libghttp-devel >= 1.0
 BuildRequires:	libglade-gnome-devel
 BuildRequires:	libtool
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	sed >= 4.0
 Obsoletes:	libgtkhtml20
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/X11/GNOME
 
@@ -70,13 +69,13 @@ Summary(uk):	Файли, необх╕дн╕ для розробки програм з використанням gtkhtml
 Summary(zh_CN): gtkhtml©╙╥╒©Б
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	bonobo-devel
-Requires:	gal-devel >= 0.22
-Requires:	gdk-pixbuf-gnome-devel
+Requires:	GConf-devel >= 1.0.7
+Requires:	bonobo-devel >= 0.32
+Requires:	gal1-devel >= 0.21
+Requires:	gdk-pixbuf-gnome-devel >= 0.8.0
 Requires:	gnome-print-devel >= 0.29
 Requires:	gtk-doc-common
 Requires:	libglade-gnome-devel
-Requires:	libunicode-devel
 Obsoletes:	lubgtkhtml20-devel
 
 %description devel
@@ -123,13 +122,18 @@ Biblioteki statyczne gtkhtml.
 Bibliotecas estАticas para desenvolver aplicaГУes gtkhtml.
 
 %prep
-%setup -q
+%setup -q -n gtkhtml-%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
-sed -i -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in
+sed -i -e 's/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/' configure.in
+sed -i -e 's/AM_PROG_XML_I18N_TOOLS/AC_PROG_INTLTOOL/' configure.in
+sed -i -e 's/XML_I18N_MERGE_OAF_RULE/INTLTOOL_OAF_RULE/' \
+	components/{html-editor,ebrowser}/Makefile.am
+sed -i -e 's/nn no pl/nn nb pl/' configure.in
+
+mv -f po/{no,nb}.po
 
 %build
 %{__libtoolize}
@@ -158,7 +162,7 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/plugin/*.{la,a}
 
-%find_lang %{name} --all-name
+%find_lang gtkhtml --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -166,11 +170,11 @@ rm -rf $RPM_BUILD_ROOT
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files -f gtkhtml.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libgtkhtml-1.1.so.*.*.*
 %attr(755,root,root) %{_libdir}/bonobo/plugin/lib*.so
 %dir %{_datadir}/gtkhtml-%{mver}
 %{_datadir}/gtkhtml-%{mver}/icons
@@ -179,18 +183,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/control-center/Documents/*
 %{_datadir}/gnome/ui/*
 %{_datadir}/oaf/*.oaf
+%{_datadir}/idl/*.idl
 %{_desktopdir}/*.desktop
-%{_pixmapsdir}/*
-%{_pkgconfigdir}/*.pc
+%{_pixmapsdir}/*.png
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*
-%{_datadir}/idl/*.idl
-%{_gtkdocdir}/*
+%attr(755,root,root) %{_libdir}/libgtkhtml-1.1.so
+%{_libdir}/libgtkhtml-1.1.la
+%{_includedir}/gtkhtml-1.1
+%{_pkgconfigdir}/gtkhtml-1.1.pc
+%{_gtkdocdir}/gtkhtml*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libgtkhtml-1.1.a

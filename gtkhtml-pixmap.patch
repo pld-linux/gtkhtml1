@@ -1,17 +1,17 @@
 diff -Nru gtkhtml-0.12.0/art/Makefile.am gtkhtml-0.12.0.new/art/Makefile.am
 --- gtkhtml-0.12.0/art/Makefile.am	Thu Aug 16 11:53:23 2001
 +++ gtkhtml-0.12.0.new/art/Makefile.am	Sat Sep  8 12:56:44 2001
-@@ -20,7 +20,6 @@
- 	search-24.png			\
- 	search-and-replace-16.png	\
- 	search-and-replace-24.png	\
--	html-viewer.png			\
+@@ -9,7 +9,6 @@
  	bulb.png			\
- 	rule-blue-left.png		\
- 	rule-blue-center.png		\
-@@ -36,5 +35,9 @@
- 	redo-16.png			\
- 	redo-24.png
+ 	empty_image.png			\
+ 	flowers.png			\
+-	html-viewer.png			\
+ 	insert-table-16.png		\
+ 	insert-table-24.png		\
+ 	insert-image-16.png		\
+@@ -37,5 +36,9 @@
+ 	undo-16.png			\
+ 	undo-24.png
  
 +pixmapsdir = $(datadir)/pixmaps
 +pixmaps_DATA = html-viewer.png

@@ -151,7 +151,7 @@ diff -Nru gtkhtml-0.12.0/configure.in gtkhtml-0.12.0.new/configure.in
 -AC_SUBST(CPPFLAGS)
 -AC_SUBST(LDFLAGS)
 -
- ALL_LINGUAS="az cs da de el es fi fr gl hu it ja ko lt nl nn no pl pt_BR ru sk sl sv tr uk zh_TW.Big5"
+ ALL_LINGUAS="az cs da de el es fi fr gl hu it ja ko lt lv nl nn no pl pt_BR ru sk sl sv tr uk zh_TW"
  AM_GNOME_GETTEXT
  
 diff -Nru gtkhtml-0.12.0/doc/Makefile.am gtkhtml-0.12.0.new/doc/Makefile.am
@@ -186,20 +186,11 @@ diff -Nru gtkhtml-0.12.0/src/Makefile.am gtkhtml-0.12.0.new/src/Makefile.am
  
  # The test program.
  
-@@ -208,7 +208,6 @@
- 	htmlurl.c
- 
- testgtkhtml_CFLAGS = $(GLIBWWW_CFLAGS)
--testgtkhtml_LDFLAGS += -static
- testgtkhtml_LDADD =				\
- 	libgtkhtml.la				\
- 	$(GNOMEUI_LIBS)				\
-@@ -221,8 +220,6 @@
+@@ -221,7 +220,6 @@
  
  gtest_SOURCES = \
  	test.c
 -testgtkhtml_CFLAGS = 
--gtest_LDFLAGS += -static
- gtest_LDADD =				\
+ gtest_LDADD =					\
  	libgtkhtml.la				\
  	$(GNOMEUI_LIBS)				\

@@ -1,0 +1,11 @@
+--- gtkhtml-0.12.0/src/gtkhtml-stream.h~	Thu Jul 19 08:33:49 2001
++++ gtkhtml-0.12.0/src/gtkhtml-stream.h	Sat Sep  8 17:18:33 2001
+@@ -40,7 +40,7 @@
+ 					  gpointer                user_data);
+ void           gtk_html_stream_write     (GtkHTMLStream          *stream,
+ 					  const gchar            *buffer,
+-					  size_t                  size);
++					  guint                   size);
+ void           gtk_html_stream_destroy   (GtkHTMLStream          *stream);
+ void           gtk_html_stream_close     (GtkHTMLStream          *stream,
+ 					  GtkHTMLStreamStatus     status);

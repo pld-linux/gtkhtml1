@@ -19,7 +19,7 @@ diff -ur gtkhtml-1.0.2.orig/capplet/Makefile.am gtkhtml-1.0.2/capplet/Makefile.a
  	$(EXTRA_GNOME_LIBS)		\
  	$(GNOME_CAPPLET_LIBS) 		\
  	$(GCONF_LIBS) 			\
- 	$(top_builddir)/src/libgtkhtml.la
+ 	$(top_builddir)/src/libgtkhtml-@GTKHTML_RELEASE@.la
  
 +gtkhtml_properties_capplet_CFLAGS = \
 +	$(GCONF_CFLAGS)
@@ -45,7 +45,7 @@ diff -ur gtkhtml-1.0.2.orig/components/ebrowser/Makefile.am gtkhtml-1.0.2/compon
 +ebrowser_CFLAGS = $(EXTRA_GNOME_CFLAGS) $(GCONF_CFLAGS)
 +
  LDADD = \
- 	$(top_builddir)/src/libgtkhtml.la \
+ 	$(top_builddir)/src/libgtkhtml-1.1.la \
  	$(EXTRA_GNOME_LIBS) \
  	$(GHTTP_LIBS)
  
@@ -82,21 +82,12 @@ diff -ur gtkhtml-1.0.2.orig/components/html-editor/Makefile.am gtkhtml-1.0.2/com
  	$(GTK_CFLAGS)					\
  	-DGLADE_DATADIR=\"$(gladedir)\"
  
--CFLAGS +=  $(GCONF_CFLAGS) $(PSPELL_CFLAGS) -DICONDIR=\"$(datadir)/gtkhtml/icons\"
-+CFLAGS =  $(GCONF_CFLAGS) $(PSPELL_CFLAGS) -DICONDIR=\"$(datadir)/gtkhtml/icons\"
+-CFLAGS +=  $(GCONF_CFLAGS) $(PSPELL_CFLAGS) -DICONDIR=\"$(GTKHTML_DATADIR)/icons\"
++CFLAGS =  $(GCONF_CFLAGS) $(PSPELL_CFLAGS) -DICONDIR=\"$(GTKHTML_DATADIR)/icons\"
  
  # CORBA stuff
  
-@@ -47,8 +47,6 @@
- 	$(ORBIT_IDL) -I$(datadir)/idl `$(GNOME_CONFIG) --cflags idl`	\
- 		-I$(srcdir) $(srcdir)/Spell.idl
- 
--LDFLAGS += -dynamic
--
- LDADD =	\
- 	$(top_builddir)/src/libgtkhtml.la	\
- 	$(EXTRA_GNOME_LIBS)			\
-@@ -119,11 +117,23 @@
+@@ -119,13 +117,25 @@
  
  libgnome_gtkhtml_editor_la_SOURCES =		\
  	$(GTKHTML_EDITOR_SOURCES_COMMON)
@@ -105,21 +96,23 @@ diff -ur gtkhtml-1.0.2.orig/components/html-editor/Makefile.am gtkhtml-1.0.2/com
 +	$(GCONF_CFLAGS) $(PSPELL_CFLAGS) 	\
 +	-DICONDIR=\"$(datadir)/gtkhtml/icons\"
 +
-+libgnome_gtkhtml_editor_la_LDFLAGS = -dynamic
++#libgnome_gtkhtml_editor_la_LDFLAGS = -dynamic
 +
  PRGS =
+ install-exec-hook:
+ 
  else
  PRGS = gnome-gtkhtml-editor
-+
  gnome_gtkhtml_editor_SOURCES =			\
  	$(GTKHTML_EDITOR_SOURCES_COMMON)
 +
 +gnome_gtkhtml_editor_CFLAGS = \
 +	$(GCONF_CFLAGS) $(PSPELL_CFLAGS) 	\
 +	-DICONDIR=\"$(datadir)/gtkhtml/icons\"
++	
+ install-exec-hook:
+ 	mv $(DESTDIR)$(bindir)/gnome-gtkhtml-editor $(DESTDIR)$(bindir)/gnome-gtkhtml-editor-@EDITOR_API_VERSION@
  endif
- 
- bin_PROGRAMS = $(PRGS)
 @@ -155,6 +165,10 @@
  	resolver.h				\
  	test-html-editor-control.c
@@ -131,15 +124,6 @@ diff -ur gtkhtml-1.0.2.orig/components/html-editor/Makefile.am gtkhtml-1.0.2/com
  # Extra stuff to distribute.
  
  EXTRA_DIST =					\
-@@ -171,7 +185,7 @@
- idldir = $(datadir)/gtkhtml
- idl_DATA = $(IDLS)
- 
--CLEANFILES += $(IDL_GENERATED) $(SPELL_IDL_GENERATED)
-+CLEANFILES = $(IDL_GENERATED) $(SPELL_IDL_GENERATED)
- BUILT_SOURCE = $(IDL_GENERATED) $(SPELL_IDL_GENERATED)
- 
- dist-hook:
 Only in gtkhtml-1.0.2/components/html-editor: Makefile.am.orig
 diff -ur gtkhtml-1.0.2.orig/configure.in gtkhtml-1.0.2/configure.in
 --- gtkhtml-1.0.2.orig/configure.in	Mon Mar 18 20:57:45 2002
@@ -152,7 +136,7 @@ diff -ur gtkhtml-1.0.2.orig/configure.in gtkhtml-1.0.2/configure.in
 -AC_SUBST(CPPFLAGS)
 -AC_SUBST(LDFLAGS)
 -
- ALL_LINGUAS="az cs da de el es eu fi fr gl hu it ja ko lt lv nl nn no pl pt pt_BR ru sk sl sv tr uk zh_CN zh_TW"
+ ALL_LINGUAS="az ca cs da de el es et eu fi fr gl hu it ja ko lt lv ms nl nn no pl pt pt_BR ru sk sl sv tr uk vi zh_CN zh_TW"
  AM_GNOME_GETTEXT
  
 diff -ur gtkhtml-1.0.2.orig/doc/Makefile.am gtkhtml-1.0.2/doc/Makefile.am
@@ -171,13 +155,14 @@ diff -ur gtkhtml-1.0.2.orig/doc/Makefile.am gtkhtml-1.0.2/doc/Makefile.am
 diff -ur gtkhtml-1.0.2.orig/src/Makefile.am gtkhtml-1.0.2/src/Makefile.am
 --- gtkhtml-1.0.2.orig/src/Makefile.am	Mon Mar 18 17:56:20 2002
 +++ gtkhtml-1.0.2/src/Makefile.am	Sat May 18 08:06:43 2002
-@@ -7,7 +7,6 @@
+@@ -7,7 +7,7 @@
  	-DSRCDIR=\"$(srcdir)\" \
  	-DPREFIX=\"$(prefix)\"
  
--CFLAGS +=  $(GCONF_CFLAGS)
+-CFLAGS +=  $(GCONF_CFLAGS) -DICONDIR=\"$(GTKHTML_DATADIR)/icons\"
++CFLAGS =  $(GCONF_CFLAGS) -DICONDIR=\"$(GTKHTML_DATADIR)/icons\"
  
- lib_LTLIBRARIES = libgtkhtml.la
+ lib_LTLIBRARIES = libgtkhtml-1.1.la
  
 @@ -194,11 +193,12 @@
  #	htmlhspace.c				\
@@ -186,18 +171,10 @@ diff -ur gtkhtml-1.0.2.orig/src/Makefile.am gtkhtml-1.0.2/src/Makefile.am
 -#	htmlengine-edit-table.c			\
 +#	htmlengine-edit-table.c			
  
- libgtkhtml_la_LDFLAGS = -version-info $(GTKHTML_CURRENT):$(GTKHTML_REVISION):$(GTKHTML_AGE)
+ libgtkhtml_1_1_la_LDFLAGS = -version-info $(GTKHTML_CURRENT):$(GTKHTML_REVISION):$(GTKHTML_AGE)
  
- libgtkhtml_la_LIBADD = $(EXTRA_GNOME_LIBS) $(GCONF_LIBS)
+ libgtkhtml_1_1_la_LIBADD = $(EXTRA_GNOME_LIBS) $(GCONF_LIBS)
 +libgtkhtml_la_CFLAGS = $(GCONF_CFLAGS)
  
  # The test program.
  
-@@ -220,7 +220,6 @@
- 
- gtest_SOURCES = \
- 	test.c
--testgtkhtml_CFLAGS = 
- gtest_LDADD =					\
- 	libgtkhtml.la				\
- 	$(GNOMEUI_LIBS)				\

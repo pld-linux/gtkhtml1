@@ -1,7 +1,7 @@
 diff -Nur gtkhtml-1.0.0.orig/src/gtkhtml-properties.c gtkhtml-1.0.0/src/gtkhtml-properties.c
 --- gtkhtml-1.0.0.orig/src/gtkhtml-properties.c	Thu Nov 15 22:01:35 2001
 +++ gtkhtml-1.0.0/src/gtkhtml-properties.c	Wed Dec  5 08:10:03 2001
-@@ -32,7 +32,58 @@
+@@ -32,7 +32,61 @@
  
  #define STRINGIZE(x) #x
  
@@ -53,6 +53,9 @@ diff -Nur gtkhtml-1.0.0.orig/src/gtkhtml-properties.c gtkhtml-1.0.0/src/gtkhtml-
 +		*fix_name = g_strdup_printf ("-*-courier-*-*-*-*-12-*-*-*-*-*-%s-%s", enc1, enc2);
 +
 +		/* printf ("default encoding %s-%s\n%s\n%s\n", enc1, enc2, *var_name, *fix_name); */
++		g_free (font_name);
++		g_free (enc1);
++		g_free (enc2);
 +	} else {
 +		*var_name = g_strdup ("-*-helvetica-*-*-*-*-12-*-*-*-*-*-*-*");
 +		*fix_name = g_strdup ("-*-courier-*-*-*-*-12-*-*-*-*-*-*-*");
@@ -61,7 +64,7 @@ diff -Nur gtkhtml-1.0.0.orig/src/gtkhtml-properties.c gtkhtml-1.0.0/src/gtkhtml-
  
  GtkHTMLClassProperties *
  gtk_html_class_properties_new (void)
-@@ -267,59 +318,6 @@
+@@ -267,62 +318,6 @@
  }
  #endif
  
@@ -112,6 +115,9 @@ diff -Nur gtkhtml-1.0.0.orig/src/gtkhtml-properties.c gtkhtml-1.0.0/src/gtkhtml-
 -		*fix_name = g_strdup_printf ("-*-courier-*-*-*-*-12-*-*-*-*-*-%s-%s", enc1, enc2);
 -
 -		/* printf ("default encoding %s-%s\n%s\n%s\n", enc1, enc2, *var_name, *fix_name); */
+-		g_free (font_name);
+-		g_free (enc1);
+-		g_free (enc2);
 -	} else {
 -		*var_name = g_strdup ("-*-helvetica-*-*-*-*-12-*-*-*-*-*-*-*");
 -		*fix_name = g_strdup ("-*-courier-*-*-*-*-12-*-*-*-*-*-*-*");

@@ -140,10 +140,9 @@ diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/c
  BUILT_SOURCE = $(IDL_GENERATED) $(SPELL_IDL_GENERATED)
  
  dist-hook:
-diff -Nru gtkhtml-0.12.0/configure.in gtkhtml-0.12.0.new/configure.in
---- gtkhtml-0.12.0/configure.in	Wed Aug 22 00:44:55 2001
-+++ gtkhtml-0.12.0.new/configure.in	Sat Sep  8 11:54:01 2001
-@@ -20,10 +20,6 @@
+--- gtkhtml-0.16.1/configure.in.orig	Wed Nov 14 23:46:16 2001
++++ gtkhtml-0.16.1/configure.in	Wed Nov 21 08:27:13 2001
+@@ -19,10 +19,6 @@
  
  GNOME_COMPILE_WARNINGS
  
@@ -151,7 +150,7 @@ diff -Nru gtkhtml-0.12.0/configure.in gtkhtml-0.12.0.new/configure.in
 -AC_SUBST(CPPFLAGS)
 -AC_SUBST(LDFLAGS)
 -
- ALL_LINGUAS="az cs da de el es fi fr gl hu it ja ko lt lv nl nn no pl pt pt_BR ru sk sl sv tr uk zh_TW"
+ ALL_LINGUAS="az cs da de el es fi fr gl hu it ja ko lt lv nl nn no pl pt pt_BR ru sk sl sv tr uk zh_CN zh_TW"
  AM_GNOME_GETTEXT
  
 diff -Nru gtkhtml-0.12.0/doc/Makefile.am gtkhtml-0.12.0.new/doc/Makefile.am

@@ -150,7 +150,7 @@ diff -Nru gtkhtml-0.12.0/components/html-editor/Makefile.am gtkhtml-0.12.0.new/c
 -AC_SUBST(CPPFLAGS)
 -AC_SUBST(LDFLAGS)
 -
- ALL_LINGUAS="az cs da de el es fi fr gl hu it ja ko lt lv nl nn no pl pt pt_BR ru sk sl sv tr uk zh_CN zh_TW"
+ ALL_LINGUAS="az cs da de el es eu fi fr gl hu it ja ko lt lv nl nn no pl pt pt_BR ru sk sl sv tr uk zh_CN zh_TW"
  AM_GNOME_GETTEXT
  
 diff -Nru gtkhtml-0.12.0/doc/Makefile.am gtkhtml-0.12.0.new/doc/Makefile.am

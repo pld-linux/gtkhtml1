@@ -1,5 +1,18 @@
---- gtkhtml-0.12.0/src/gtkhtml-stream.h~	Thu Jul 19 08:33:49 2001
-+++ gtkhtml-0.12.0/src/gtkhtml-stream.h	Sat Sep  8 17:18:33 2001
+diff -urN gtkhtml-1.0.0.org/src/gtkhtml-stream.c gtkhtml-1.0.0/src/gtkhtml-stream.c
+--- gtkhtml-1.0.0.org/src/gtkhtml-stream.c	Wed Jan  9 20:00:40 2002
++++ gtkhtml-1.0.0/src/gtkhtml-stream.c	Wed Jan  9 20:01:43 2002
+@@ -68,7 +68,7 @@
+ void
+ gtk_html_stream_write (GtkHTMLStream *stream,
+ 		       const gchar *buffer,
+-		       size_t size)
++		       guint size)
+ {
+ 	g_return_if_fail (stream != NULL);
+ 	g_return_if_fail (buffer != NULL);
+diff -urN gtkhtml-1.0.0.org/src/gtkhtml-stream.h gtkhtml-1.0.0/src/gtkhtml-stream.h
+--- gtkhtml-1.0.0.org/src/gtkhtml-stream.h	Wed Jan  9 20:00:40 2002
++++ gtkhtml-1.0.0/src/gtkhtml-stream.h	Wed Jan  9 20:00:53 2002
 @@ -40,7 +40,7 @@
  					  gpointer                user_data);
  void           gtk_html_stream_write     (GtkHTMLStream          *stream,

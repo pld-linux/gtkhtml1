@@ -1,5 +1,4 @@
 %define		mver		1.1
-%define		subver		7
 
 Summary:	Gtkhtml library
 Summary(pl):	Biblioteka gtkhtml
@@ -8,11 +7,11 @@ Summary(ru):	GtkHTML - это библиотека рендеринга/редактирования HTML
 Summary(uk):	GtkHTML - це б╕бл╕отека рендерингу/редагування HTML
 Summary(zh_CN): gtkhtml ©Б
 Name:		gtkhtml
-Version:	%{mver}.%{subver}
+Version:	%{mver}.10
 Release:	1
 License:	LGPL
 Group:		X11/Libraries
-Source0:	ftp://ftp.gnome.org/mirror/gnome.org/sources/gtkhtml/%{mver}/%{name}-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/gtkhtml/1.1/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-am15.patch
 Patch1:		%{name}-pixmap.patch
 Patch2:		%{name}-%{name}-stream.h.patch
@@ -36,7 +35,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libgtkhtml20
 
 %define		_sysconfdir	/etc/X11/GNOME
-%define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
 %description
 This is GtkHTML, a lightweight HTML rendering/printing/editing engine.
@@ -71,7 +69,7 @@ Summary(ru):	Файлы, необходимые для разработки программ с использованием gtkhtml
 Summary(uk):	Файли, необх╕дн╕ для розробки програм з використанням gtkhtml
 Summary(zh_CN): gtkhtml©╙╥╒©Б
 Group:		X11/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	bonobo-devel
 Requires:	gal-devel >= 0.22
 Requires:	gdk-pixbuf-gnome-devel
@@ -110,7 +108,7 @@ Summary(pt_BR):	Bibliotecas estАticas para desenvolver aplicaГУes gtkhtml
 Summary(ru):	Статические библиотеки для разработки программ с gtkhtml
 Summary(uk):	Статичн╕ б╕бл╕отеки для розробки програм з gtkhtml
 Group:		X11/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gtkhtml libraries.
@@ -131,18 +129,15 @@ Bibliotecas estАticas para desenvolver aplicaГУes gtkhtml.
 %patch2 -p1
 %patch3 -p1
 
+sed -i -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in
+
 %build
-sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in > configure.in.tmp
-mv -f configure.in.tmp configure.in
-rm -f missing
 %{__libtoolize}
-xml-i18n-toolize --force
+intltoolize --force
 %{__aclocal} -I macros
 %{__autoconf}
 %{__automake}
-GNOME_LIBCONFIG_PATH=/usr/lib
-export GNOME_LIBCONFIG_PATH
-
+export GNOME_LIBCONFIG_PATH=%{_libdir}
 %configure \
 	--with-bonobo \
 	--with-gconf
@@ -156,11 +151,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	deskdir=%{_applnkdir}/Settings/GNOME/Documents \
+	deskdir=%{_desktopdir} \
 	pkgconfigdir=%{_pkgconfigdir} \
 	idldir=%{_datadir}/idl \
 	HTML_DIR=%{_gtkdocdir}
-	
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/plugin/*.{la,a}
+
 %find_lang %{name} --all-name
 
 %clean
@@ -171,6 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/bonobo/plugin/lib*.so
@@ -181,16 +179,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/control-center/Documents/*
 %{_datadir}/gnome/ui/*
 %{_datadir}/oaf/*.oaf
-%{_applnkdir}/Settings/GNOME/Documents/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
-%{_pkgconfigdir}/*
+%{_pkgconfigdir}/*.pc
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_libdir}/bonobo/plugin/lib*.la
 %{_includedir}/*
 %{_datadir}/idl/*.idl
 %{_gtkdocdir}/*
@@ -198,4 +194,3 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
-%{_libdir}/bonobo/plugin/lib*.a

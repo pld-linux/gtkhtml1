@@ -3,7 +3,6 @@ Summary(pl):	Biblioteka gtkhtml
 Summary(pt_BR):	Biblioteca gtkhtml
 Summary(ru):	GtkHTML - это библиотека рендеринга/редактирования HTML
 Summary(uk):	GtkHTML - це б╕бл╕отека рендерингу/редагування HTML
-Summary(zh_CN): gtkhtml ©Б
 Name:		gtkhtml1
 %define	mver	1.1
 Version:	%{mver}.10
@@ -66,7 +65,6 @@ Summary(pl):	Pliki nagЁСwkowe i inne nizbЙdne do tworzenia aplikacji u©ywaj╠cych
 Summary(pt_BR):	Bibliotecas, arquivos de inclusЦo, e etc para desenvolver aplicaГУes gtkhtml
 Summary(ru):	Файлы, необходимые для разработки программ с использованием gtkhtml
 Summary(uk):	Файли, необх╕дн╕ для розробки програм з використанням gtkhtml
-Summary(zh_CN): gtkhtml©╙╥╒©Б
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf-devel >= 1.0.7

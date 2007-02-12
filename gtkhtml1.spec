@@ -1,8 +1,8 @@
 Summary:	Gtkhtml library
-Summary(pl):	Biblioteka gtkhtml
-Summary(pt_BR):	Biblioteca gtkhtml
-Summary(ru):	GtkHTML - это библиотека рендеринга/редактирования HTML
-Summary(uk):	GtkHTML - це б╕бл╕отека рендерингу/редагування HTML
+Summary(pl.UTF-8):   Biblioteka gtkhtml
+Summary(pt_BR.UTF-8):   Biblioteca gtkhtml
+Summary(ru.UTF-8):   GtkHTML - я█я┌п╬ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╟ я─п╣п╫п╢п╣я─п╦п╫пЁп╟/я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟п╫п╦я▐ HTML
+Summary(uk.UTF-8):   GtkHTML - я├п╣ п╠я√п╠п╩я√п╬я┌п╣п╨п╟ я─п╣п╫п╢п╣я─п╦п╫пЁя┐/я─п╣п╢п╟пЁя┐п╡п╟п╫п╫я▐ HTML
 Name:		gtkhtml1
 %define	mver	1.1
 Version:	%{mver}.10
@@ -39,32 +39,32 @@ This is GtkHTML, a lightweight HTML rendering/printing/editing engine.
 It was originally based on KHTMLW, but is now being developed
 independently of it.
 
-%description -l pl
-GtkHTML jesrt "lekk╠" bibilotek╠ do renderingu, drukowania i edycji
-HTML. Pierwotne ╪rСdЁa tej biblioteki bazuj╠ na KHTMLW ale teraz
-GtkHTML jest rozwijana niezale©nie od KHTMLW,
+%description -l pl.UTF-8
+GtkHTML jesrt "lekkд┘" bibilotekд┘ do renderingu, drukowania i edycji
+HTML. Pierwotne е╨rцЁdе┌a tej biblioteki bazujд┘ na KHTMLW ale teraz
+GtkHTML jest rozwijana niezaleе╪nie od KHTMLW,
 
-%description -l pt_BR
-Este И o GtkHTML, uma ferramenta de renderizar/imprimir/editar HTML
+%description -l pt_BR.UTF-8
+Este ц╘ o GtkHTML, uma ferramenta de renderizar/imprimir/editar HTML
 leve e pequeno
 
-%description -l ru
-Это GtkHTML, легкий "движок" рендеринга/печати/редактирования HTML.
-Сначала он базировался на KHTMLW, но теперь разрабатывается
-независимо.
+%description -l ru.UTF-8
+п╜я┌п╬ GtkHTML, п╩п╣пЁп╨п╦п╧ "п╢п╡п╦п╤п╬п╨" я─п╣п╫п╢п╣я─п╦п╫пЁп╟/п©п╣я┤п╟я┌п╦/я─п╣п╢п╟п╨я┌п╦я─п╬п╡п╟п╫п╦я▐ HTML.
+п║п╫п╟я┤п╟п╩п╟ п╬п╫ п╠п╟п╥п╦я─п╬п╡п╟п╩я│я▐ п╫п╟ KHTMLW, п╫п╬ я┌п╣п©п╣я─я▄ я─п╟п╥я─п╟п╠п╟я┌я▀п╡п╟п╣я┌я│я▐
+п╫п╣п╥п╟п╡п╦я│п╦п╪п╬.
 
-%description -l uk
-Це GtkHTML, легке ядро рендерингу/друку/редагування HTML. Воно
-спочатку базувалось на KHTMLW, але тепер розробля╓ться незалежно в╕д
-нього.
+%description -l uk.UTF-8
+п╕п╣ GtkHTML, п╩п╣пЁп╨п╣ я▐п╢я─п╬ я─п╣п╫п╢п╣я─п╦п╫пЁя┐/п╢я─я┐п╨я┐/я─п╣п╢п╟пЁя┐п╡п╟п╫п╫я▐ HTML. п▓п╬п╫п╬
+я│п©п╬я┤п╟я┌п╨я┐ п╠п╟п╥я┐п╡п╟п╩п╬я│я▄ п╫п╟ KHTMLW, п╟п╩п╣ я┌п╣п©п╣я─ я─п╬п╥я─п╬п╠п╩я▐я■я┌я▄я│я▐ п╫п╣п╥п╟п╩п╣п╤п╫п╬ п╡я√п╢
+п╫я▄п╬пЁп╬.
 
 %package devel
 Summary:	Header files and etc neccessary to develop gtkhtml applications
-Summary(es):	Bibliotecas, archivos de inclusiСn, e etc. para desarrollar aplicaciones gtkhtml
-Summary(pl):	Pliki nagЁСwkowe i inne nizbЙdne do tworzenia aplikacji u©ywaj╠cych gtkhtml
-Summary(pt_BR):	Bibliotecas, arquivos de inclusЦo, e etc para desenvolver aplicaГУes gtkhtml
-Summary(ru):	Файлы, необходимые для разработки программ с использованием gtkhtml
-Summary(uk):	Файли, необх╕дн╕ для розробки програм з використанням gtkhtml
+Summary(es.UTF-8):   Bibliotecas, archivos de inclusiцЁn, e etc. para desarrollar aplicaciones gtkhtml
+Summary(pl.UTF-8):   Pliki nagе┌цЁwkowe i inne nizbд≥dne do tworzenia aplikacji uе╪ywajд┘cych gtkhtml
+Summary(pt_BR.UTF-8):   Bibliotecas, arquivos de inclusцёo, e etc para desenvolver aplicaц╖ц╣es gtkhtml
+Summary(ru.UTF-8):   п╓п╟п╧п╩я▀, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п©я─п╬пЁя─п╟п╪п╪ я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ gtkhtml
+Summary(uk.UTF-8):   п╓п╟п╧п╩п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п©я─п╬пЁя─п╟п╪ п╥ п╡п╦п╨п╬я─п╦я│я┌п╟п╫п╫я▐п╪ gtkhtml
 Group:		X11/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	GConf-devel >= 1.0.7
@@ -79,45 +79,45 @@ Obsoletes:	lubgtkhtml20-devel
 %description devel
 Header files and etc neccessary to develop gtkhtml applications.
 
-%description devel -l es
-Bibliotecas, archivos de inclusiСn, y etc para desarrollar
+%description devel -l es.UTF-8
+Bibliotecas, archivos de inclusiцЁn, y etc para desarrollar
 aplicaciones gtkhtml.
 
-%description devel -l pl
-Pliki nagЁСwkowe i reszta niezbЙdnych przy tworzeniu aplikacji
+%description devel -l pl.UTF-8
+Pliki nagе┌цЁwkowe i reszta niezbд≥dnych przy tworzeniu aplikacji
 wykorzystujacych gtkhtml.
 
-%description devel -l pt_BR
-Bibliotecas, arquivos de inclusЦo, e etc para desenvolver aplicaГУes
+%description devel -l pt_BR.UTF-8
+Bibliotecas, arquivos de inclusцёo, e etc para desenvolver aplicaц╖ц╣es
 gtkhtml.
 
-%description devel -l ru
-Файлы, необходимые для разработки программ с использованием gtkhtml.
+%description devel -l ru.UTF-8
+п╓п╟п╧п╩я▀, п╫п╣п╬п╠я┘п╬п╢п╦п╪я▀п╣ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п©я─п╬пЁя─п╟п╪п╪ я│ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫п╦п╣п╪ gtkhtml.
 
-%description devel -l uk
-Файли, необх╕дн╕ для розробки програм з використанням gtkhtml.
+%description devel -l uk.UTF-8
+п╓п╟п╧п╩п╦, п╫п╣п╬п╠я┘я√п╢п╫я√ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п©я─п╬пЁя─п╟п╪ п╥ п╡п╦п╨п╬я─п╦я│я┌п╟п╫п╫я▐п╪ gtkhtml.
 
 %package static
 Summary:	Static gtkhtml libraries
-Summary(es):	Bibliotecas estАticas para desarrollar aplicaciones gtkhtml
-Summary(pl):	Biblioteki statyczne gtkhtml
-Summary(pt_BR):	Bibliotecas estАticas para desenvolver aplicaГУes gtkhtml
-Summary(ru):	Статические библиотеки для разработки программ с gtkhtml
-Summary(uk):	Статичн╕ б╕бл╕отеки для розробки програм з gtkhtml
+Summary(es.UTF-8):   Bibliotecas estц║ticas para desarrollar aplicaciones gtkhtml
+Summary(pl.UTF-8):   Biblioteki statyczne gtkhtml
+Summary(pt_BR.UTF-8):   Bibliotecas estц║ticas para desenvolver aplicaц╖ц╣es gtkhtml
+Summary(ru.UTF-8):   п║я┌п╟я┌п╦я┤п╣я│п╨п╦п╣ п╠п╦п╠п╩п╦п╬я┌п╣п╨п╦ п╢п╩я▐ я─п╟п╥я─п╟п╠п╬я┌п╨п╦ п©я─п╬пЁя─п╟п╪п╪ я│ gtkhtml
+Summary(uk.UTF-8):   п║я┌п╟я┌п╦я┤п╫я√ п╠я√п╠п╩я√п╬я┌п╣п╨п╦ п╢п╩я▐ я─п╬п╥я─п╬п╠п╨п╦ п©я─п╬пЁя─п╟п╪ п╥ gtkhtml
 Group:		X11/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gtkhtml libraries.
 
-%description static -l es
-Bibliotecas estАticas para desarrollar aplicaciones gtkhtml.
+%description static -l es.UTF-8
+Bibliotecas estц║ticas para desarrollar aplicaciones gtkhtml.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne gtkhtml.
 
-%description static -l pt_BR
-Bibliotecas estАticas para desenvolver aplicaГУes gtkhtml.
+%description static -l pt_BR.UTF-8
+Bibliotecas estц║ticas para desenvolver aplicaц╖ц╣es gtkhtml.
 
 %prep
 %setup -q -n gtkhtml-%{version}
